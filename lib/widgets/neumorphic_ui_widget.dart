@@ -4,11 +4,13 @@ class NeumorphicCircularIconWidget extends StatelessWidget {
   IconData iconData;
   double height;
   double width;
+  Widget widget;
 
   NeumorphicCircularIconWidget({
     @required this.iconData,
     this.height = 50,
     this.width = 50,
+    this.widget
   });
 
   @override
@@ -20,7 +22,7 @@ class NeumorphicCircularIconWidget extends StatelessWidget {
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
-              offset: Offset(-5, -5), blurRadius: 10, color: Color(0xFFFFFFFF)),
+              offset: Offset(-5, -5), blurRadius: 10, color: Color(0xFFFFFFFF),),
           BoxShadow(
             offset: Offset(5, 5),
             blurRadius: 10,
@@ -33,7 +35,7 @@ class NeumorphicCircularIconWidget extends StatelessWidget {
           color: Color(0xFFE0EAFC),
           shape: BoxShape.circle,
         ),
-        child: Icon(iconData),
+        child: widget,
       ),
     );
   }

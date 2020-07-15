@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:musicPlayer/model/song_provider.dart';
 import 'package:musicPlayer/screen/ask_permission/ask_permission_screen.dart';
-import 'package:musicPlayer/screen/home_screen/home_screen.dart';
+import 'package:musicPlayer/screen/home_screen/player_screen.dart';
 import 'package:musicPlayer/screen/splash_screen/splash_screen.dart';
 import 'package:provider/provider.dart';
 

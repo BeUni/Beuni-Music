@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:musicPlayer/model/song_provider.dart';
 import 'package:musicPlayer/utils/native_bridge.dart';
-import 'package:musicPlayer/widgets/decoration.dart';
 import 'package:musicPlayer/widgets/gradial_circular_image.dart';
 import 'package:musicPlayer/widgets/neumorphic_ui_widget.dart';
 import 'package:musicPlayer/widgets/neumorphic_ui_widget_concave.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatefulWidget {
+class PlayerScreen extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _PlayerScreenState createState() => _PlayerScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _PlayerScreenState extends State<PlayerScreen> {
   int valueHolder = 20;
 
   @override
@@ -48,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget itemWidget(SongProvider model) {
-    return Column(
+    return model.currentSong != null ? Column(
       children: <Widget>[
         SizedBox(
           height: 60,
@@ -63,14 +61,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 Navigator.pop(context);
               },
               child: NeumorphicCircularIconWidget(
-                iconData: Icons.close,
+                widget: Icon(Icons.close),
               ),
             ),
             Expanded(
               child: Container(),
             ),
             NeumorphicCircularIconWidget(
-              iconData: Icons.menu,
+              widget: Icon(Icons.menu),
             ),
             SizedBox(
               width: 20,
@@ -82,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         GradialCircularImageWidget(
           imageUrl:
-              'https://scontent.fblr1-4.fna.fbcdn.net/v/t1.0-9/c0.0.843.843a/p843x403/72755829_3051147524960621_5300041247296061440_o.jpg?_nc_cat=101&_nc_sid=09cbfe&_nc_ohc=mEoekI1IcPsAX97_Ki3&_nc_ht=scontent.fblr1-4.fna&oh=19b2bbe3e4349b664f8ffc5cc22d0ccc&oe=5F0B99CD',
+          'https://scontent.fblr1-4.fna.fbcdn.net/v/t1.0-9/c0.0.843.843a/p843x403/72755829_3051147524960621_5300041247296061440_o.jpg?_nc_cat=101&_nc_sid=09cbfe&_nc_ohc=mEoekI1IcPsAX97_Ki3&_nc_ht=scontent.fblr1-4.fna&oh=19b2bbe3e4349b664f8ffc5cc22d0ccc&oe=5F0B99CD',
         ),
         SizedBox(
           height: 20,
@@ -110,7 +108,9 @@ class _HomeScreenState extends State<HomeScreen> {
             fontSize: 18,
           ),
         ),
-        SizedBox(height: 40,),
+        SizedBox(
+          height: 40,
+        ),
         NeumorphicSlider(
           value: model.position?.inMilliseconds?.toDouble() ?? 0,
           onChanged: (double value) =>
@@ -122,7 +122,9 @@ class _HomeScreenState extends State<HomeScreen> {
             border: NeumorphicBorder.none(),
           ),
         ),
-        SizedBox(height: 40,),
+        SizedBox(
+          height: 40,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -132,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 model.previousSong();
               },
               child: NeumorphicCircularIconWidget(
-                iconData: Icons.fast_rewind,
+                widget: Icon(Icons.fast_rewind),
                 height: 60,
                 width: 60,
               ),
@@ -148,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       });
                     },
                     child: NeumorphicCircularIconWidget(
-                      iconData: Icons.play_arrow,
+                      widget: Icon(Icons.play_arrow),
                       height: 60,
                       width: 60,
                     ),
@@ -176,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 model.nextSong();
               },
               child: NeumorphicCircularIconWidget(
-                iconData: Icons.fast_forward,
+                widget: Icon(Icons.fast_forward),
                 height: 60,
                 width: 60,
               ),
@@ -184,16 +186,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         )
       ],
-    );
-  }
-
-  void checkpermission() {
-//     NativeBridge.instance.checkPermission().then((value)  {
-//       if(value == 0){
-//
-//       }
-//     });
+    ) : Container();
   }
 }
-
-// colors: [Color(0xFFECF3FC),Color(0xFFE0EAFC)],

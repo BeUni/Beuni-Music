@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:musicPlayer/model/song_item.dart';
 import 'package:musicPlayer/model/song_provider.dart';
-import 'package:musicPlayer/screen/home_screen/home_screen.dart';
+import 'package:musicPlayer/screen/home_screen/player_screen.dart';
 import 'package:musicPlayer/screen/music_listing_screen/component/music_list_item.dart';
 import 'package:musicPlayer/utils/native_bridge.dart';
 import 'package:musicPlayer/widgets/decoration.dart';
@@ -105,7 +105,7 @@ class _MusicListingScreenState extends State<MusicListingScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomeScreen()));
+                                  builder: (context) => PlayerScreen()));
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -178,7 +178,7 @@ class _MusicListingScreenState extends State<MusicListingScreen> {
                                                 });
                                               },
                                               child: NeumorphicCircularIconWidget(
-                                                iconData: Icons.play_arrow,
+                                                widget: Icon(Icons.play_arrow),
                                               ),
                                             ),
                                           ),
@@ -207,7 +207,7 @@ class _MusicListingScreenState extends State<MusicListingScreen> {
                                           model.nextSong();
                                         },
                                         child: NeumorphicCircularIconWidget(
-                                          iconData: Icons.fast_forward,
+                                          widget: Icon(Icons.fast_forward),
                                         ),
                                       ),
                                       SizedBox(

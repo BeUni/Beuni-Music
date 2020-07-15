@@ -56,7 +56,7 @@ class _MusicListItemWidgetState extends State<MusicListItemWidget> {
               widget.songPlayState(PlaySongType.PLAY);
             },
             child: NeumorphicCircularIconWidget(
-              iconData: Icons.play_arrow,
+              widget: Icon(Icons.play_arrow),
               height: 60,
               width: 60,
             ),

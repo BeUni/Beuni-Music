@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:musicPlayer/screen/ask_permission/ask_permission_screen.dart';
-import 'package:musicPlayer/screen/home_screen/home_screen.dart';
 import 'package:musicPlayer/screen/music_listing_screen/music_listing.dart';
 import 'package:musicPlayer/utils/native_bridge.dart';
 import 'package:musicPlayer/widgets/gradial_circular_image.dart';

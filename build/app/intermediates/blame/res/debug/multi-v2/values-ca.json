@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/shivamsharma/Documents/My workSpace/musicPlayer/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-ca/values-ca.xml",
+            "outputFile": "/Users/shivamsharma/Documents/My workSpace/Beuni-Music/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-ca/values-ca.xml",
             "map": [
                 {
                     "source": "/Users/shivamsharma/.gradle/caches/transforms-2/files-2.1/65fd00bb7753452a02d198555191de3e/core-1.3.0/res/values-ca/values-ca.xml",
