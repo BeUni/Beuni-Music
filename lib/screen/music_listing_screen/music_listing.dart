@@ -19,6 +19,9 @@ class MusicListingScreen extends StatefulWidget {
 }
 
 class _MusicListingScreenState extends State<MusicListingScreen> {
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   Duration duration;
   Duration position;
   bool isBottomViewShow;
@@ -43,17 +46,39 @@ class _MusicListingScreenState extends State<MusicListingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Color(0xFFE0EAFC),
-        title: Text("Beuni Music", style: TextStyle(
-          color: Colors.blue
-        ),),
-        iconTheme: IconThemeData(
-          color: Colors.blue
+      key: _scaffoldKey,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60),
+        child: AppBar(
+          elevation: 0,
+          backgroundColor: Color(0xFFE0EAFC),
+          title: Text(
+            "Beuni Music",
+            style: TextStyle(color: Colors.blue),
+          ),
+          iconTheme: IconThemeData(
+            color: Colors.black
+          ),
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 8, right: 8, top: 8, bottom: 8),
+            child: InkWell(
+              onTap: (){
+                _scaffoldKey.currentState.openDrawer();
+              },
+              child: NeumorphicCircularIconWidget(
+                widget: Icon(Icons.menu),
+                width: 30,
+                height: 30,
+              ),
+            ),
+          ),
+          centerTitle: true,
         ),
-        leading: Icon(Icons.menu),
-        centerTitle: true,
+      ),
+      drawer: Drawer(
+        child: Container(
+          color: Color(0xFFE0EAFC),
+        ),
       ),
       body: listingWidget(),
     );
@@ -78,22 +103,22 @@ class _MusicListingScreenState extends State<MusicListingScreen> {
                           itemBuilder: (context, position) {
                             return MusicListItemWidget(
                               model: model,
-                              showDecoration: model.currentSongPosition == position,
+                              showDecoration:
+                                  model.currentSongPosition == position,
                               songItem: snapshot.data[position],
                               onSongSelect: (songItem) {
                                 setState(() {
                                   model.playSong(position);
                                 });
                               },
-                              songPlayState: (playSongState){
+                              songPlayState: (playSongState) {
                                 setState(() {
-                                  if(playSongState == PlaySongType.PLAY){
-                                      model.resumeSong();
-                                  } else{
-                                      model.pauseSong();
+                                  if (playSongState == PlaySongType.PLAY) {
+                                    model.resumeSong();
+                                  } else {
+                                    model.pauseSong();
                                   }
                                 });
-
                               },
                             );
                           }),
@@ -138,7 +163,8 @@ class _MusicListingScreenState extends State<MusicListingScreen> {
                                   ),
                                   Center(
                                     child: Container(
-                                      width: MediaQuery.of(context).size.width/2,
+                                      width:
+                                          MediaQuery.of(context).size.width / 2,
                                       child: Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceEvenly,
@@ -172,12 +198,13 @@ class _MusicListingScreenState extends State<MusicListingScreen> {
                                             visible: model.songState !=
                                                 PlaySongType.PLAY,
                                             child: InkWell(
-                                              onTap: (){
+                                              onTap: () {
                                                 setState(() {
                                                   model.resumeSong();
                                                 });
                                               },
-                                              child: NeumorphicCircularIconWidget(
+                                              child:
+                                                  NeumorphicCircularIconWidget(
                                                 widget: Icon(Icons.play_arrow),
                                               ),
                                             ),
@@ -203,7 +230,7 @@ class _MusicListingScreenState extends State<MusicListingScreen> {
                                         width: 12,
                                       ),
                                       InkWell(
-                                        onTap: (){
+                                        onTap: () {
                                           model.nextSong();
                                         },
                                         child: NeumorphicCircularIconWidget(

@@ -68,9 +68,9 @@ class _PlayerScreenState extends State<PlayerScreen> {
                   Expanded(
                     child: Container(),
                   ),
-                  NeumorphicCircularIconWidget(
-                    widget: Icon(Icons.menu),
-                  ),
+//                  NeumorphicCircularIconWidget(
+//                    widget: Icon(Icons.menu),
+//                  ),
                   SizedBox(
                     width: 20,
                   )
