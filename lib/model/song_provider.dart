@@ -20,6 +20,12 @@ class SongProvider extends ChangeNotifier {
 
   int get currentSongPosition => _currentSongPosition;
 
+  get durationText =>
+      duration != null ? duration.toString().split('.').first : '';
+  get positionText =>
+      position != null ? position.toString().split('.').first : '';
+
+
   void updateSongList(List<SongItem> songItemList) {
     _songItemList = songItemList;
     initPlayer();

@@ -46,146 +46,169 @@ class _PlayerScreenState extends State<PlayerScreen> {
   }
 
   Widget itemWidget(SongProvider model) {
-    return model.currentSong != null ? Column(
-      children: <Widget>[
-        SizedBox(
-          height: 60,
-        ),
-        Row(
-          children: <Widget>[
-            SizedBox(
-              width: 20,
-            ),
-            InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: NeumorphicCircularIconWidget(
-                widget: Icon(Icons.close),
-              ),
-            ),
-            Expanded(
-              child: Container(),
-            ),
-            NeumorphicCircularIconWidget(
-              widget: Icon(Icons.menu),
-            ),
-            SizedBox(
-              width: 20,
-            )
-          ],
-        ),
-        SizedBox(
-          height: 50,
-        ),
-        GradialCircularImageWidget(
-          imageUrl:
-          'https://scontent.fblr1-4.fna.fbcdn.net/v/t1.0-9/c0.0.843.843a/p843x403/72755829_3051147524960621_5300041247296061440_o.jpg?_nc_cat=101&_nc_sid=09cbfe&_nc_ohc=mEoekI1IcPsAX97_Ki3&_nc_ht=scontent.fblr1-4.fna&oh=19b2bbe3e4349b664f8ffc5cc22d0ccc&oe=5F0B99CD',
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        Text(
-          model.currentSong.title,
-          maxLines: 1,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.grey[600],
-            fontWeight: FontWeight.w600,
-            fontSize: 18,
-          ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Text(
-          model.currentSong.artistName,
-          maxLines: 1,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.grey[600],
-            fontWeight: FontWeight.w400,
-            fontSize: 18,
-          ),
-        ),
-        SizedBox(
-          height: 40,
-        ),
-        NeumorphicSlider(
-          value: model.position?.inMilliseconds?.toDouble() ?? 0,
-          onChanged: (double value) =>
-              NativeBridge.instance.seekSong((value / 1000).roundToDouble()),
-          min: 0.0,
-          max: model.duration.inMilliseconds.toDouble(),
-          style: SliderStyle(
-            depth: 10,
-            border: NeumorphicBorder.none(),
-          ),
-        ),
-        SizedBox(
-          height: 40,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            InkWell(
-              onTap: () {
-                model.previousSong();
-              },
-              child: NeumorphicCircularIconWidget(
-                widget: Icon(Icons.fast_rewind),
+    return model.currentSong != null
+        ? Column(
+            children: <Widget>[
+              SizedBox(
                 height: 60,
-                width: 60,
               ),
-            ),
-            Stack(
-              children: <Widget>[
-                Visibility(
-                  visible: model.songState != PlaySongType.PLAY,
-                  child: InkWell(
+              Row(
+                children: <Widget>[
+                  SizedBox(
+                    width: 20,
+                  ),
+                  InkWell(
                     onTap: () {
-                      setState(() {
-                        model.resumeSong();
-                      });
+                      Navigator.pop(context);
                     },
                     child: NeumorphicCircularIconWidget(
-                      widget: Icon(Icons.play_arrow),
-                      height: 60,
-                      width: 60,
+                      widget: Icon(Icons.close),
                     ),
                   ),
-                ),
-                Visibility(
-                  visible: model.songState == PlaySongType.PLAY,
-                  child: InkWell(
-                    onTap: () {
-                      setState(() {
-                        model.pauseSong();
-                      });
-                    },
-                    child: NeumorphicCircularIconConcaveWidget(
-                      iconData: Icons.pause,
-                      height: 60,
-                      width: 60,
-                    ),
+                  Expanded(
+                    child: Container(),
                   ),
-                ),
-              ],
-            ),
-            InkWell(
-              onTap: () {
-                model.nextSong();
-              },
-              child: NeumorphicCircularIconWidget(
-                widget: Icon(Icons.fast_forward),
-                height: 60,
-                width: 60,
+                  NeumorphicCircularIconWidget(
+                    widget: Icon(Icons.menu),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  )
+                ],
               ),
-            )
-          ],
-        )
-      ],
-    ) : Container();
+              SizedBox(
+                height: 50,
+              ),
+              GradialCircularImageWidget(
+                imageUrl:
+                    'https://scontent.fblr1-4.fna.fbcdn.net/v/t1.0-9/c0.0.843.843a/p843x403/72755829_3051147524960621_5300041247296061440_o.jpg?_nc_cat=101&_nc_sid=09cbfe&_nc_ohc=mEoekI1IcPsAX97_Ki3&_nc_ht=scontent.fblr1-4.fna&oh=19b2bbe3e4349b664f8ffc5cc22d0ccc&oe=5F0B99CD',
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                model.currentSong.title,
+                maxLines: 1,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                model.currentSong.artistName,
+                maxLines: 1,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  fontWeight: FontWeight.w400,
+                  fontSize: 18,
+                ),
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 16, right: 16),
+                child: NeumorphicSlider(
+                  value: model.position?.inMilliseconds?.toDouble() ?? 0,
+                  onChanged: (double value) => NativeBridge.instance
+                      .seekSong((value / 1000).roundToDouble()),
+                  min: 0.0,
+                  max: model.duration.inMilliseconds.toDouble(),
+                  style: SliderStyle(
+                    depth: 10,
+                    border: NeumorphicBorder.none(),
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 24, right: 24),
+                child: Row(
+                  children: <Widget>[
+                    Text(
+                      model.positionText,
+                      style: TextStyle(
+                          color: Colors.grey[600], fontWeight: FontWeight.w400),
+                    ),
+                    Expanded(child: Container()),
+                    Text(
+                      model.durationText,
+                      style: TextStyle(
+                          color: Colors.grey[600], fontWeight: FontWeight.w400),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  InkWell(
+                    onTap: () {
+                      model.previousSong();
+                    },
+                    child: NeumorphicCircularIconWidget(
+                      widget: Icon(Icons.fast_rewind),
+                      height: 60,
+                      width: 60,
+                    ),
+                  ),
+                  Stack(
+                    children: <Widget>[
+                      Visibility(
+                        visible: model.songState != PlaySongType.PLAY,
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              model.resumeSong();
+                            });
+                          },
+                          child: NeumorphicCircularIconWidget(
+                            widget: Icon(Icons.play_arrow),
+                            height: 60,
+                            width: 60,
+                          ),
+                        ),
+                      ),
+                      Visibility(
+                        visible: model.songState == PlaySongType.PLAY,
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              model.pauseSong();
+                            });
+                          },
+                          child: NeumorphicCircularIconConcaveWidget(
+                            iconData: Icons.pause,
+                            height: 60,
+                            width: 60,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  InkWell(
+                    onTap: () {
+                      model.nextSong();
+                    },
+                    child: NeumorphicCircularIconWidget(
+                      widget: Icon(Icons.fast_forward),
+                      height: 60,
+                      width: 60,
+                    ),
+                  )
+                ],
+              )
+            ],
+          )
+        : Container();
   }
 }
