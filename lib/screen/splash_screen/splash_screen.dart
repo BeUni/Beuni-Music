@@ -37,7 +37,8 @@ class _SplashScreenState extends State<SplashScreen> {
             children: <Widget>[
               GradialCircularImageWidget(
                 imageUrl:
-                    'https://i.pinimg.com/564x/24/62/77/246277e0d908cd3a798eb1cd2b28c14e.jpg',
+                    'assets/images/music.svg',
+                isUrlFromAsset: true,
               ),
             ],
           ),

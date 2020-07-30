@@ -1,6 +1,7 @@
 package com.example.musicPlayer;
 
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -46,7 +47,8 @@ public class SongUtils {
                 MediaStore.Audio.Media.TITLE,
                 MediaStore.Audio.Media.DATA,
                 MediaStore.Audio.Media.DISPLAY_NAME,
-                MediaStore.Audio.Media.DURATION
+                MediaStore.Audio.Media.DURATION,
+                MediaStore.Audio.Media.ALBUM_ID
         };
 
         Cursor cursor = mContentResolver.query(
@@ -64,11 +66,30 @@ public class SongUtils {
             songItem.setSongPath(cursor.getString(3));
             songItem.setDisplayName(cursor.getString(4));
             songItem.setDuration(cursor.getString(5));
+            long albumId = cursor.getLong(6);
+
+            Uri sArtworkUri = Uri
+                    .parse("content://media/external/audio/albumart");
+            Uri albumArtUri = ContentUris.withAppendedId(sArtworkUri, albumId);
+            songItem.setAlbumArt(getRealPathFromURI(albumId));
 
             mSongs.add(songItem);
 //            songs.add(cursor.getString(0) + "||" + cursor.getString(1) + "||" +   cursor.getString(2) + "||" +   cursor.getString(3) + "||" +  cursor.getString(4) + "||" +  cursor.getString(5));
         }
 
         return mSongs;
+    }
+
+
+    public String getRealPathFromURI(long albumId) {
+        Cursor cursor = mContentResolver.query(MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI,
+                new String[] {MediaStore.Audio.Albums._ID, MediaStore.Audio.Albums.ALBUM_ART},
+                MediaStore.Audio.Albums._ID+ "=?",
+                new String[] {String.valueOf(albumId)},
+                null);
+
+        cursor.moveToFirst();
+        return cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Albums.ALBUM_ART));
+            // do whatever you need to do
     }
 }

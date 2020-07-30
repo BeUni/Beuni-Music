@@ -81,7 +81,8 @@ class _PlayerScreenState extends State<PlayerScreen> {
               ),
               GradialCircularImageWidget(
                 imageUrl:
-                    'https://scontent.fblr1-4.fna.fbcdn.net/v/t1.0-9/c0.0.843.843a/p843x403/72755829_3051147524960621_5300041247296061440_o.jpg?_nc_cat=101&_nc_sid=09cbfe&_nc_ohc=mEoekI1IcPsAX97_Ki3&_nc_ht=scontent.fblr1-4.fna&oh=19b2bbe3e4349b664f8ffc5cc22d0ccc&oe=5F0B99CD',
+                    model.currentSong?.albumArt ?? "",
+                isUrlFromAsset: false,
               ),
               SizedBox(
                 height: 20,

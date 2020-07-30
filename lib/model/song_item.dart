@@ -17,6 +17,8 @@ class SongItem {
 //  @SerializedName("duration")
   String duration;
 
+  String albumArt;
+
   SongItem.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     artistName = json['artistName'];
@@ -24,5 +26,6 @@ class SongItem {
     songPath = json['songPath'];
     displayName = json['displayName'];
     duration = json['duration'];
+    albumArt = json['albumArt'];
   }
 }

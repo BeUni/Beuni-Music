@@ -26,6 +26,16 @@ public class SongItem {
     @SerializedName("duration")
     private String duration;
 
+    @SerializedName("albumArt")
+    private String albumArt;
+
+    public String getAlbumArt() {
+        return albumArt;
+    }
+
+    public void setAlbumArt(String albumArt) {
+        this.albumArt = albumArt;
+    }
 
     public String getId() {
         return id;

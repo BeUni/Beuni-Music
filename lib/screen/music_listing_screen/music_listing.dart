@@ -34,6 +34,7 @@ class _MusicListingScreenState extends State<MusicListingScreen> {
   Future<List<SongItem>> getList() async {
     Future.delayed(Duration(seconds: 5));
     String localStorage = await NativeBridge.instance.getLocalStorage();
+    print(localStorage);
 
     List<SongItem> songList = json
         .decode(localStorage)

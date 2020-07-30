@@ -48,17 +48,18 @@ class _MusicListItemWidgetState extends State<MusicListItemWidget> {
             },
             child: NeumorphicCircularIconConcaveWidget(
               iconData: Icons.pause,
-              height: 60,
-              width: 60,
             ),
           ): InkWell(
             onTap: (){
               widget.songPlayState(PlaySongType.PLAY);
             },
-            child: NeumorphicCircularIconWidget(
-              widget: Icon(Icons.play_arrow),
-              height: 60,
-              width: 60,
+            child: InkWell(
+              onTap: (){
+                widget.onSongSelect(widget.songItem);
+              },
+              child: NeumorphicCircularIconWidget(
+                widget: Icon(Icons.play_arrow),
+              ),
             ),
           ),
         ),

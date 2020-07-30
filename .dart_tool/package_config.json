@@ -68,6 +68,12 @@
       "languageVersion": "2.1"
     },
     {
+      "name": "flutter_svg",
+      "rootUri": "file:///Users/shivamsharma/flutter_older_version/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_svg-0.14.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///Users/shivamsharma/flutter_older_version/flutter/packages/flutter_test",
       "packageUri": "lib/",
@@ -102,6 +108,18 @@
       "rootUri": "file:///Users/shivamsharma/flutter_older_version/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.6.4",
       "packageUri": "lib/",
       "languageVersion": "2.0"
+    },
+    {
+      "name": "path_drawing",
+      "rootUri": "file:///Users/shivamsharma/flutter_older_version/flutter/.pub-cache/hosted/pub.dartlang.org/path_drawing-0.4.1",
+      "packageUri": "lib/",
+      "languageVersion": "1.19"
+    },
+    {
+      "name": "path_parsing",
+      "rootUri": "file:///Users/shivamsharma/flutter_older_version/flutter/.pub-cache/hosted/pub.dartlang.org/path_parsing-0.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "1.19"
     },
     {
       "name": "petitparser",
@@ -188,7 +206,7 @@
       "languageVersion": "2.1"
     }
   ],
-  "generated": "2020-07-15T17:08:15.823396Z",
+  "generated": "2020-07-27T04:41:45.587956Z",
   "generator": "pub",
   "generatorVersion": "2.8.0-dev.12.0.flutter-9983424a3c"
 }
