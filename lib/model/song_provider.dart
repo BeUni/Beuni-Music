@@ -101,5 +101,10 @@ class SongProvider extends ChangeNotifier {
       this.position = p;
       notifyListeners();
     });
+
+    NativeBridge.instance.setCompletionHandler(() {
+      nextSong();
+      notifyListeners();
+    });
   }
 }

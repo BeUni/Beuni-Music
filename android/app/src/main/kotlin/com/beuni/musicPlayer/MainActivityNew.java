@@ -1,4 +1,4 @@
-package com.example.musicPlayer;
+package com.beuni.musicPlayer;
 
 import android.Manifest;
 import android.content.Context;
@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -14,13 +13,12 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
-import io.flutter.plugin.common.MethodCall;
-import io.flutter.plugin.common.MethodChannel;
-
 import androidx.core.app.ActivityCompat;
 
-import com.example.musicPlayer.model.SongItem;
+import com.beuni.musicPlayer.model.SongItem;
 import com.google.gson.Gson;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,7 +26,8 @@ import java.util.List;
 
 import io.flutter.embedding.android.FlutterActivity;
 import io.flutter.embedding.engine.FlutterEngine;
-import io.flutter.plugin.common.PluginRegistry;
+import io.flutter.plugin.common.MethodCall;
+import io.flutter.plugin.common.MethodChannel;
 
 public class MainActivityNew extends FlutterActivity {
 
@@ -54,7 +53,7 @@ public class MainActivityNew extends FlutterActivity {
     }
 
     @Override
-    public void configureFlutterEngine(FlutterEngine flutterEngine) {
+    public void configureFlutterEngine(@NotNull FlutterEngine flutterEngine) {
         super.configureFlutterEngine(flutterEngine);
 
         channel = new MethodChannel(flutterEngine.getDartExecutor(), CHANNEL_NAME);
@@ -86,9 +85,21 @@ public class MainActivityNew extends FlutterActivity {
                         case MethodName.MUTE_SONG:
                             muteSong(methodCall, result);
                             break;
+                        case MethodName.ON_SHARE_APP:
+                            onShareApp();
+                            break;
                     }
 
                 });
+    }
+
+    private void onShareApp() {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT,
+                "Hey check Beuni Music App at: https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID);
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
     }
 
     private void resumeSong(MethodCall methodCall, MethodChannel.Result result) {
@@ -234,11 +245,8 @@ public class MainActivityNew extends FlutterActivity {
 
         File file = new File(Environment.getExternalStorageDirectory().toString());
         Log.d("local storage", file.getAbsolutePath());
-
         SongUtils songUtils = new SongUtils(getContentResolver());
-
         List<SongItem> songItemLists = songUtils.getSongList();
-
         result.success(new Gson().toJson(songItemLists));
 //        result .success(songsMap);
 
@@ -324,6 +332,7 @@ public class MainActivityNew extends FlutterActivity {
         String ON_COMPLETE = "onComplete";
         String ON_START = "onStart";
         String ON_CURRENT_POSITION = "onCurrentPosition";
+        String ON_SHARE_APP = "onShareApp";
     }
 
 }

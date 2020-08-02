@@ -1,10 +1,6 @@
-package com.example.musicPlayer.model;
-
-import android.graphics.Bitmap;
+package com.beuni.musicPlayer.model;
 
 import com.google.gson.annotations.SerializedName;
-
-import java.util.HashMap;
 
 public class SongItem {
 
@@ -27,7 +23,7 @@ public class SongItem {
     private String duration;
 
     @SerializedName("albumArt")
-    private String albumArt;
+    private String albumArt = "";
 
     public String getAlbumArt() {
         return albumArt;

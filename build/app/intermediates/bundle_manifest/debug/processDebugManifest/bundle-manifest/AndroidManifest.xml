@@ -26,10 +26,11 @@
         android:name="io.flutter.app.FlutterApplication"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
+        android:extractNativeLibs="false"
         android:icon="@mipmap/ic_launcher"
-        android:label="musicPlayer" >
+        android:label="Beuni Music" >
         <activity
-            android:name="com.example.musicPlayer.MainActivityNew"
+            android:name="com.beuni.musicPlayer.MainActivityNew"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
@@ -62,7 +63,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.musicPlayer.ActivityMain" />
+        <activity android:name="com.beuni.musicPlayer.ActivityMain" />
         <!--
              Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java

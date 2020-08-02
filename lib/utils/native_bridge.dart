@@ -18,6 +18,7 @@ class NativeBridge {
   static const String _onStart = "onStart";
   static const String _onDuration = "seekDuration";
   static const String _onCurrentPosition = "onCurrentPosition";
+  static const String _onShareApp = "onShareApp";
 
   TimeChangeHandler durationHandler;
   TimeChangeHandler positionHandler;
@@ -78,6 +79,7 @@ class NativeBridge {
     try {
       String localAddress =
           await _platform.invokeMethod(_getLocalStorageAddress);
+      print("fromNative--->"+localAddress);
       return localAddress;
     } on PlatformException catch (e) {
       print("Failed to Invoke: '${e.message}'.");
@@ -146,5 +148,13 @@ class NativeBridge {
 
   void setCompletionHandler(VoidCallback callback) {
     completionHandler = callback;
+  }
+
+  void shareApp() async{
+    try {
+      await _platform.invokeMethod(_onShareApp);
+    } catch (e) {
+      print("Failed to Invoke: '${e.message}'.");
+    }
   }
 }

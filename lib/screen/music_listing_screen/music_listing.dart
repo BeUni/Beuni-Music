@@ -19,7 +19,6 @@ class MusicListingScreen extends StatefulWidget {
 }
 
 class _MusicListingScreenState extends State<MusicListingScreen> {
-
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   Duration duration;
@@ -32,9 +31,9 @@ class _MusicListingScreenState extends State<MusicListingScreen> {
   }
 
   Future<List<SongItem>> getList() async {
-    Future.delayed(Duration(seconds: 5));
+//    Future.delayed(Duration(seconds: 5));
     String localStorage = await NativeBridge.instance.getLocalStorage();
-    print(localStorage);
+    print("listData------>" + localStorage);
 
     List<SongItem> songList = json
         .decode(localStorage)
@@ -57,30 +56,41 @@ class _MusicListingScreenState extends State<MusicListingScreen> {
             "Beuni Music",
             style: TextStyle(color: Colors.blue),
           ),
-          iconTheme: IconThemeData(
-            color: Colors.black
-          ),
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 8, right: 8, top: 8, bottom: 8),
-            child: InkWell(
-              onTap: (){
-                _scaffoldKey.currentState.openDrawer();
-              },
-              child: NeumorphicCircularIconWidget(
-                widget: Icon(Icons.menu),
-                width: 30,
-                height: 30,
+          iconTheme: IconThemeData(color: Colors.black),
+          actions: <Widget>[
+            Container(
+              margin: EdgeInsets.only(right: 16, bottom: 4, top: 4),
+              child: InkWell(
+                onTap: () {
+                  NativeBridge.instance.shareApp();
+                },
+                child: NeumorphicCircularIconWidget(
+                  widget: Icon(Icons.share, color: Colors.grey[700],),
+      ),
               ),
             ),
-          ),
+          ],
+//          leading: Padding(
+//            padding: const EdgeInsets.only(left: 8, right: 8, top: 8, bottom: 8),
+//            child: InkWell(
+//              onTap: (){
+//                _scaffoldKey.currentState.openDrawer();
+//              },
+//              child: NeumorphicCircularIconWidget(
+//                widget: Icon(Icons.menu),
+//                width: 30,
+//                height: 30,
+//              ),
+//            ),
+//          ),
           centerTitle: true,
         ),
       ),
-      drawer: Drawer(
-        child: Container(
-          color: Color(0xFFE0EAFC),
-        ),
-      ),
+//      drawer: Drawer(
+//        child: Container(
+//          color: Color(0xFFE0EAFC),
+//        ),
+//      ),
       body: listingWidget(),
     );
   }

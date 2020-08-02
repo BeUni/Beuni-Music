@@ -1,23 +1,14 @@
-package com.example.musicPlayer;
+package com.beuni.musicPlayer;
 
 import android.content.ContentResolver;
-import android.content.ContentUris;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.MediaMetadataRetriever;
-import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 
-import com.example.musicPlayer.model.SongItem;
-import com.google.gson.Gson;
+import com.beuni.musicPlayer.model.SongItem;
 
-import java.io.File;
-import java.util.AbstractList;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class SongUtils {
@@ -38,6 +29,7 @@ public class SongUtils {
 
 
     public List<SongItem> getSongList(){
+        showLogg("get Song LIst");
         //Some audio may be explicitly marked as not being music
         String selection = MediaStore.Audio.Media.IS_MUSIC + " != 0";
 
@@ -58,6 +50,7 @@ public class SongUtils {
                 null,
                 null);
 
+        showLogg("cussor ");
         while(cursor.moveToNext()){
             SongItem songItem = new SongItem();
             songItem.setId(cursor.getString(0));
@@ -68,28 +61,39 @@ public class SongUtils {
             songItem.setDuration(cursor.getString(5));
             long albumId = cursor.getLong(6);
 
-            Uri sArtworkUri = Uri
-                    .parse("content://media/external/audio/albumart");
-            Uri albumArtUri = ContentUris.withAppendedId(sArtworkUri, albumId);
+
             songItem.setAlbumArt(getRealPathFromURI(albumId));
 
             mSongs.add(songItem);
-//            songs.add(cursor.getString(0) + "||" + cursor.getString(1) + "||" +   cursor.getString(2) + "||" +   cursor.getString(3) + "||" +  cursor.getString(4) + "||" +  cursor.getString(5));
+            showLogg("files--->"+cursor.getString(0) + "||" + cursor.getString(1) + "||" +   cursor.getString(2) + "||" +   cursor.getString(3) + "||" +  cursor.getString(4) + "||" +  cursor.getString(5));
         }
+        cursor.close();
 
         return mSongs;
     }
 
 
     public String getRealPathFromURI(long albumId) {
+        String data= "";
         Cursor cursor = mContentResolver.query(MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI,
                 new String[] {MediaStore.Audio.Albums._ID, MediaStore.Audio.Albums.ALBUM_ART},
                 MediaStore.Audio.Albums._ID+ "=?",
                 new String[] {String.valueOf(albumId)},
                 null);
 
-        cursor.moveToFirst();
-        return cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Albums.ALBUM_ART));
+        if (cursor.moveToFirst()) {
+            data = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Albums.ALBUM_ART));
+            cursor.close();
+        }
+
+        if (data != null){
+            return data;
+        }
+        return "";
             // do whatever you need to do
+    }
+
+    private void showLogg(String msg){
+        Log.d("BEUNI---->", msg);
     }
 }
