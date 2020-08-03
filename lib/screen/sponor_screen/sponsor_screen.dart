@@ -29,7 +29,7 @@ class SponsorScreen extends StatelessWidget {
                 onTap: (){
                   Navigator.pop(context);
                 },
-                child: NeumorphicCircularIconWidget(
+                child: NeumorphicButtonWidget(
                   widget: Icon(Icons.close),
                 ),
               ),

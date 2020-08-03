@@ -7,6 +7,7 @@ import 'package:musicPlayer/screen/home_screen/player_screen.dart';
 import 'package:musicPlayer/screen/music_listing_screen/component/music_list_item.dart';
 import 'package:musicPlayer/utils/native_bridge.dart';
 import 'package:musicPlayer/widgets/decoration.dart';
+import 'package:musicPlayer/widgets/neumorphic_ui_button_widget.dart';
 import 'package:musicPlayer/widgets/neumorphic_ui_widget.dart';
 import 'package:musicPlayer/widgets/neumorphic_ui_widget_concave.dart';
 import 'package:provider/provider.dart';
@@ -64,9 +65,12 @@ class _MusicListingScreenState extends State<MusicListingScreen> {
                 onTap: () {
                   NativeBridge.instance.shareApp();
                 },
-                child: NeumorphicCircularIconWidget(
-                  widget: Icon(Icons.share, color: Colors.grey[700],),
-      ),
+                child: NeumorphicButtonWidget(
+                  widget: Icon(
+                    Icons.share,
+                    color: Colors.grey[700],
+                  ),
+                ),
               ),
             ),
           ],
