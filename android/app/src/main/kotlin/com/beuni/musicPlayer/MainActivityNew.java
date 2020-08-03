@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -88,9 +89,17 @@ public class MainActivityNew extends FlutterActivity {
                         case MethodName.ON_SHARE_APP:
                             onShareApp();
                             break;
+                        case MethodName.OPEN_PAYPAL:
+                            openPaypal();
+                            break;
                     }
 
                 });
+    }
+
+    private void openPaypal() {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://paypal.me/imshivamsharma"));
+        startActivity(browserIntent);
     }
 
     private void onShareApp() {
@@ -247,6 +256,15 @@ public class MainActivityNew extends FlutterActivity {
         Log.d("local storage", file.getAbsolutePath());
         SongUtils songUtils = new SongUtils(getContentResolver());
         List<SongItem> songItemLists = songUtils.getSongList();
+        for (SongItem songItemList : songItemLists) {
+            showLogg(songItemList.getId());
+            showLogg(songItemList.getArtistName());
+            showLogg(songItemList.getSongPath());
+            showLogg(songItemList.getDuration());
+            showLogg(songItemList.getAlbumArt());
+            showLogg(songItemList.getDisplayName());
+            showLogg(songItemList.getTitle());
+        }
         result.success(new Gson().toJson(songItemLists));
 //        result .success(songsMap);
 
@@ -333,6 +351,10 @@ public class MainActivityNew extends FlutterActivity {
         String ON_START = "onStart";
         String ON_CURRENT_POSITION = "onCurrentPosition";
         String ON_SHARE_APP = "onShareApp";
+        String OPEN_PAYPAL = "openPaypal";
     }
 
+    private void showLogg(String msg){
+        Log.d("BEUNI---->", msg);
+    }
 }

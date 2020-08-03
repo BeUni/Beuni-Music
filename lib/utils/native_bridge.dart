@@ -19,6 +19,7 @@ class NativeBridge {
   static const String _onDuration = "seekDuration";
   static const String _onCurrentPosition = "onCurrentPosition";
   static const String _onShareApp = "onShareApp";
+  static const String _onOpenPayPal = "openPaypal";
 
   TimeChangeHandler durationHandler;
   TimeChangeHandler positionHandler;
@@ -157,4 +158,13 @@ class NativeBridge {
       print("Failed to Invoke: '${e.message}'.");
     }
   }
+
+  void openPaypal() async{
+    try {
+      await _platform.invokeMethod(_onOpenPayPal);
+    } catch (e) {
+      print("Failed to Invoke: '${e.message}'.");
+    }
+  }
+
 }

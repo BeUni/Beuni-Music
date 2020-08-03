@@ -24,14 +24,16 @@ class AskPermissionScreen extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(16.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               SizedBox(
-                height: 50,
+                height: 200,
               ),
               Container(
-                height: 250,
-                width: 250,
+                height: 200,
+                width: 200,
                 child: Image.asset('assets/images/bg.png'),
               ),
               SizedBox(
@@ -70,7 +72,6 @@ class AskPermissionScreen extends StatelessWidget {
                       width: 100,
                       widget: Text(
                         "Deny",
-                        style: TextStyle(fontSize: 24, color: Colors.grey[600]),
                       ),
                     ),
                   ),
@@ -83,7 +84,6 @@ class AskPermissionScreen extends StatelessWidget {
                       width: 100,
                       widget: Text(
                         "Allow",
-                        style: TextStyle(fontSize: 24, color: Colors.grey[600]),
                       ),
                     ),
                   ),

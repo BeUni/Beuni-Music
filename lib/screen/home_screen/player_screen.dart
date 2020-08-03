@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:musicPlayer/model/song_provider.dart';
+import 'package:musicPlayer/screen/sponor_screen/sponsor_screen.dart';
 import 'package:musicPlayer/utils/native_bridge.dart';
 import 'package:musicPlayer/widgets/gradial_circular_image.dart';
+import 'package:musicPlayer/widgets/neumorphic_ui_button_widget.dart';
 import 'package:musicPlayer/widgets/neumorphic_ui_widget.dart';
 import 'package:musicPlayer/widgets/neumorphic_ui_widget_concave.dart';
 import 'package:provider/provider.dart';
@@ -68,9 +70,17 @@ class _PlayerScreenState extends State<PlayerScreen> {
                   Expanded(
                     child: Container(),
                   ),
-//                  NeumorphicCircularIconWidget(
-//                    widget: Icon(Icons.menu),
-//                  ),
+                  InkWell(
+                    onTap: (){
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SponsorScreen()));
+                    },
+                    child: NeumorphicButtonWidget(
+                      widget: Icon(Icons.favorite, color: Colors.red,),
+                    ),
+                  ),
                   SizedBox(
                     width: 20,
                   )
