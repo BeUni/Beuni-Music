@@ -108,6 +108,10 @@
         "source": "/Users/shivamsharma/.gradle/caches/transforms-2/files-2.1/6d35bbbe327ef689c582d1173367f0ed/media-1.0.0/res/layout/notification_media_cancel_action.xml"
     },
     {
+        "merged": "/Users/shivamsharma/Documents/My workSpace/Beuni-Music/build/app/intermediates/res/merged/debug/drawable_logo.png.flat",
+        "source": "/Users/shivamsharma/Documents/My workSpace/Beuni-Music/android/app/src/main/res/drawable/logo.png"
+    },
+    {
         "merged": "/Users/shivamsharma/Documents/My workSpace/Beuni-Music/build/app/intermediates/res/merged/debug/layout_abc_screen_simple.xml.flat",
         "source": "/Users/shivamsharma/.gradle/caches/transforms-2/files-2.1/7def8d6c3751559765cf68c2d5a2dddd/appcompat-1.1.0/res/layout/abc_screen_simple.xml"
     },
@@ -790,6 +794,10 @@
     {
         "merged": "/Users/shivamsharma/Documents/My workSpace/Beuni-Music/build/app/intermediates/res/merged/debug/drawable_abc_list_selector_background_transition_holo_light.xml.flat",
         "source": "/Users/shivamsharma/.gradle/caches/transforms-2/files-2.1/7def8d6c3751559765cf68c2d5a2dddd/appcompat-1.1.0/res/drawable/abc_list_selector_background_transition_holo_light.xml"
+    },
+    {
+        "merged": "/Users/shivamsharma/Documents/My workSpace/Beuni-Music/build/app/intermediates/res/merged/debug/drawable_icon.png.flat",
+        "source": "/Users/shivamsharma/Documents/My workSpace/Beuni-Music/android/app/src/main/res/drawable/icon.png"
     },
     {
         "merged": "/Users/shivamsharma/Documents/My workSpace/Beuni-Music/build/app/intermediates/res/merged/debug/drawable_abc_btn_default_mtrl_shape.xml.flat",

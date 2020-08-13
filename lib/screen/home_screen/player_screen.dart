@@ -92,9 +92,13 @@ class _PlayerScreenState extends State<PlayerScreen> {
                 SizedBox(
                   height: 50,
                 ),
+                model.currentSong.albumArt.isEmpty ?
                 GradialCircularImageWidget(
+                  imageUrl: 'assets/images/music.svg',
+                  isUrlFromAsset: true,
+                ) : GradialCircularImageWidget(
                   imageUrl:
-                      model.currentSong?.albumArt ?? "",
+                  model.currentSong?.albumArt ?? "",
                   isUrlFromAsset: false,
                 ),
                 SizedBox(
@@ -133,7 +137,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                     onChanged: (double value) => NativeBridge.instance
                         .seekSong((value / 1000).roundToDouble()),
                     min: 0.0,
-                    max: model.duration.inMilliseconds.toDouble(),
+                    max: model.duration?.inMilliseconds?.toDouble() ?? 0.0,
                     style: SliderStyle(
                       depth: 10,
                       border: NeumorphicBorder.none(),

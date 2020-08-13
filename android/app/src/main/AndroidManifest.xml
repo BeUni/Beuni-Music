@@ -13,7 +13,8 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="Beuni Music"
         android:extractNativeLibs="false"
-        android:icon="@mipmap/ic_launcher">
+        android:requestLegacyExternalStorage=" true"
+        android:icon="@drawable/icon">
         <activity
             android:name=".MainActivityNew"
             android:launchMode="singleTop"

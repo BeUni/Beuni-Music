@@ -92,6 +92,9 @@ public class MainActivityNew extends FlutterActivity {
                         case MethodName.OPEN_PAYPAL:
                             openPaypal();
                             break;
+                        case MethodName.FEEDBACK:
+                            feedBack();
+                            break;
                     }
 
                 });
@@ -100,6 +103,12 @@ public class MainActivityNew extends FlutterActivity {
     private void openPaypal() {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://paypal.me/imshivamsharma"));
         startActivity(browserIntent);
+    }
+
+    private void feedBack(){
+        Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse("mailto:"+"devtechindia11@gmail.com"));
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Beuni Music App Feedback");
+        startActivity(intent);
     }
 
     private void onShareApp() {
@@ -352,9 +361,10 @@ public class MainActivityNew extends FlutterActivity {
         String ON_CURRENT_POSITION = "onCurrentPosition";
         String ON_SHARE_APP = "onShareApp";
         String OPEN_PAYPAL = "openPaypal";
+        String FEEDBACK = "feedBack";
     }
 
     private void showLogg(String msg){
-        Log.d("BEUNI---->", msg);
+        Log.d("", msg);
     }
 }

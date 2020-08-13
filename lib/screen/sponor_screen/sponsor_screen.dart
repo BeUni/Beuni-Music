@@ -35,7 +35,7 @@ class SponsorScreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 100,
+              height: 50,
             ),
             Center(
               child: Column(
@@ -43,7 +43,7 @@ class SponsorScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    "Sponsor Us",
+                    "Appreciate Us",
                     maxLines: 1,
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -55,13 +55,17 @@ class SponsorScreen extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  Text(
-                    "For read local music files need storage permission to work properly",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.grey[600],
-                      fontWeight: FontWeight.w300,
-                      fontSize: 18,
+                  Container(
+                    margin: EdgeInsets.all(20),
+                    child: Text(
+                      "This music app is side project, we are trying to implement "
+                          "new feature and release it ASAP and your feedback is valuable for us to improve it",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.grey[600],
+                        fontWeight: FontWeight.w300,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -69,17 +73,32 @@ class SponsorScreen extends StatelessWidget {
                   ),
                   SvgPicture.asset('assets/images/sponsor.svg', height: 200, width: 200,),
                   SizedBox(
-                    height: 20,
+                    height: 40,
                   ),
-                  InkWell(
-                    onTap: (){
-                      NativeBridge.instance.openPaypal();
-                    },
-                    child: NeumorphicButtonWidget(
-                      width: 200,
-                      widget: Text("Sponsor via Paypal"),
-                    ),
-                  )
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      InkWell(
+                        onTap: (){
+                          NativeBridge.instance.feedback();
+                        },
+                        child: NeumorphicButtonWidget(
+                          width: 150,
+                          widget: Text("Feedback"),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){
+                          NativeBridge.instance.openPaypal();
+                        },
+                        child: NeumorphicButtonWidget(
+                          width: 150,
+                          widget: Text("Appreciate us"),
+                        ),
+                      ),
+
+                    ],
+                  ),
                 ],
               ),
             ),

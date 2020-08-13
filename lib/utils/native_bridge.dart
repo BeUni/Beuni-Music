@@ -20,6 +20,7 @@ class NativeBridge {
   static const String _onCurrentPosition = "onCurrentPosition";
   static const String _onShareApp = "onShareApp";
   static const String _onOpenPayPal = "openPaypal";
+  static const String _onFeedback = "feedBack";
 
   TimeChangeHandler durationHandler;
   TimeChangeHandler positionHandler;
@@ -41,9 +42,8 @@ class NativeBridge {
     //    print("_platformCallHandler call ${call.method} ${call.arguments}");
     switch (call.method) {
       case _onDuration:
-        final duration = new Duration(milliseconds: call.arguments);
         if (durationHandler != null) {
-          durationHandler(duration);
+          durationHandler(new Duration(milliseconds: call.arguments));
         }
         //durationNotifier.value = duration;
         break;
@@ -162,6 +162,14 @@ class NativeBridge {
   void openPaypal() async{
     try {
       await _platform.invokeMethod(_onOpenPayPal);
+    } catch (e) {
+      print("Failed to Invoke: '${e.message}'.");
+    }
+  }
+
+  void feedback() async{
+    try {
+      await _platform.invokeMethod(_onFeedback);
     } catch (e) {
       print("Failed to Invoke: '${e.message}'.");
     }
