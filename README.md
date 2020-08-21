@@ -19,7 +19,8 @@ Right now this app not have too much feature but slowly slowly we will add into 
 ### Plugins and Helps
 
 In this project i took help from [Flutter-Music-Player](https://github.com/iampawan/Flutter-Music-Player) by [@iampawan](https://github.com/iampawan)
- For Neumorphoic design i really appreciate this [Idean team](www.idean.com)
+
+For Neumorphoic design i really appreciate this [Idean team](www.idean.com)
 
 | Plugin | README |
 | ------ | ------ |
