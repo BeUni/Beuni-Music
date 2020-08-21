@@ -34,7 +34,7 @@ In this project i took help from [Flutter-Music-Player](https://github.com/iampa
 
 ### Create & Maintained by
 >If this project helps you or you learned something from the source code and want to thank me, consider buying me a cup of ☕
-[PayPal](paypal.me/imshivamsharma)
+[PayPal](https://paypal.me/imshivamsharma)
 
 
 License
